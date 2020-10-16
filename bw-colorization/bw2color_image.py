@@ -48,7 +48,7 @@ L -= 50
 # and 'b' channel values
 'print("[INFO] colorizing image...")'
 net.setInput(cv2.dnn.blobFromImage(L))
-ab = net.forward()[0, :, :, :].transpose((1, 2, 0))
+ab = net.forward()[0, :, :, :].transpose((2, 3, 1))
 
 # resize the predicted 'ab' volume to the same dimensions as our
 # input image
