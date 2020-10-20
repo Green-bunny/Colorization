@@ -128,7 +128,7 @@ layer {
   # param {lr_mult: 0 decay_mult: 0} 
   # param {lr_mult: 0 decay_mult: 0} 
   convolution_param {
-    num_output: 256
+    num_output: 64
     pad: 1
     kernel_size: 3
   }
@@ -487,7 +487,7 @@ layer {
   bottom: "conv7_3norm"
   top: "conv8_1"
   convolution_param {
-    num_output: 256
+    num_output: 64
     kernel_size: 4
     pad: 1
     dilation: 1
@@ -506,7 +506,7 @@ layer {
   bottom: "conv8_1"
   top: "conv8_2"
   convolution_param {
-    num_output: 256
+    num_output: 64
     kernel_size: 3
     pad: 1
     dilation: 1
@@ -524,7 +524,7 @@ layer {
   bottom: "conv8_2"
   top: "conv8_3"
   convolution_param {
-    num_output: 256
+    num_output: 64
     kernel_size: 3
     pad: 1
     dilation: 1
