@@ -114,15 +114,20 @@ while(False):
 	#out1.write(colorized)
 	
 img_array = []
+img_obj = {}
 for i in range(2,len(glob.glob('C:\\Users\\karan\\Desktop\\GithubProjects\\bw-colorization\\*.jpg'))):
     img = cv2.imread('C:\\Users\\karan\\Desktop\\GithubProjects\\bw-colorization\\' + str(i) + ".jpg")
     height, width, layers = img.shape
     size = (width,height)
+    img_obj[i] = img
     img_array.append(img)
 
 print(img_array[0])
 
 out = cv2.VideoWriter('project.avi',cv2.VideoWriter_fourcc(*'DIVX'), 15, size)
+for i in size(img_obj)
+	save(img_obj[i],'img object to search'+ str(i))
+
 
 for i in range(len(img_array)):
     out.write(img_array[i])
