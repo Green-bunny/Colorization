@@ -70,11 +70,13 @@ while True:
 	frame = imutils.resize(frame, width=args["width"])
 	scaled = frame.astype("float32") / 255.0
 	lab = cv2.cvtColor(scaled, cv2.COLOR_BGR2LAB)
+	rgb = frame
 
 	# resize the Lab frame to 224x224 (the dimensions the colorization
 	# network accepts), split channels, extract the 'L' channel, and
 	# then perform mean centering
 	resized = cv2.resize(lab, (224, 224))
+	resized_updated = cv2.resize(rgb, (224, 224))
 	L = cv2.split(resized)[0]
 	L -= 50
 
@@ -94,14 +96,17 @@ while True:
 	# convert the output frame from the Lab color space to RGB, clip
 	# any values that fall outside the range [0, 1], and then convert
 	# to an 8-bit unsigned integer ([0, 255] range)
+	colorized_updated = cv2.cvtColor(colorized, cv2.COLOR_GRY2RGB)
+	colorized_updated = np.clip(colorized, 0, 0.3)
 	colorized = cv2.cvtColor(colorized, cv2.COLOR_LAB2BGR)
 	colorized = np.clip(colorized, 0, 1)
 	colorized = (255 * colorized).astype("uint8")
+	final = cv2.combineCvt(colorized_updated, colorized)
 
 	# show the original and final colorized frames
 	cv2.imshow("Original", frame)
 	cv2.imshow("Grayscale", cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
-	cv2.imshow("Colorized", colorized)
+	cv2.imshow("Colorized", final)
 	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key was pressed, break from the loop
